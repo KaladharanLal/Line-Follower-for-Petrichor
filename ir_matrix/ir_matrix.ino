@@ -5,8 +5,8 @@ int irMLpin = 5;
 int irMMpin = 6;
 int irMRpin = 7;
 int irBLpin = 8;
-int irBMpin = 9;
-int irBRpin = 10;
+int irBMpin = 10;
+int irBRpin = 12;
 
 bool irFL = false;
 bool irFM = false;
@@ -20,15 +20,15 @@ bool irBR = false;
 
 void setup() {
   Serial.begin(9600);
-  // pinMode(irFL, INPUT);
-  // pinMode(irFM, INPUT);
-  // pinMode(irFR, INPUT);
-  // pinMode(irML, INPUT);
-  // pinMode(irMM, INPUT);
-  // pinMode(irMR, INPUT);
-  // pinMode(irBL, INPUT);
-  // pinMode(irBM, INPUT);
-  // pinMode(irBR, INPUT);
+  pinMode(irFL, INPUT);
+  pinMode(irFM, INPUT);
+  pinMode(irFR, INPUT);
+  pinMode(irML, INPUT);
+  pinMode(irMM, INPUT);
+  pinMode(irMR, INPUT);
+  pinMode(irBL, INPUT);
+  pinMode(irBM, INPUT);
+  pinMode(irBR, INPUT);
 }
 
 void loop() {

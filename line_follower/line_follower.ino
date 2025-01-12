@@ -1,10 +1,19 @@
-#define m1a 5
-#define m1b 6
-#define m2a 7
-#define m2b 8
+// #define m1a 5
+// #define m1b 6
+// #define m2a 7
+// #define m2b 8
 
 #define m1s 9
 #define m2s 11
+
+#define m1a A0
+#define m1b A1
+#define m2a A2
+#define m2b A3
+
+// #define m1s A4
+// #define m2s A5
+
 
 void setup() {
   // put your setup code here, to run once:
