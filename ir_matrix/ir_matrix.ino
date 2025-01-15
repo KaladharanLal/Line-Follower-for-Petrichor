@@ -1,97 +1,107 @@
-int irFLpin = 2;
-int irFMpin = 3;
-int irFRpin = 4;
-int irMLpin = 5;
-int irMMpin = 6;
-int irMRpin = 7;
-int irBLpin = 8;
-int irBMpin = 10;
-int irBRpin = 12;
+int irF1pin = 2;
+int irF2pin = 3;
+int irMMpin = 4;
+int irB2pin = 5;
+int irB1pin = 6;
+int irL1pin = 7;
+int irL2pin = 8;
+int irR2pin = 10;
+int irR1pin = 12;
 
-bool irFL = false;
-bool irFM = false;
-bool irFR = false;
-bool irML = false;
+bool irF1 = false;
+bool irF2 = false;
 bool irMM = false;
-bool irMR = false;
-bool irBL = false;
-bool irBM = false;
-bool irBR = false;
+bool irB2 = false;
+bool irB1 = false;
+bool irL1 = false;
+bool irL2 = false;
+bool irR2 = false;
+bool irR1 = false;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(irFL, INPUT);
-  pinMode(irFM, INPUT);
-  pinMode(irFR, INPUT);
-  pinMode(irML, INPUT);
-  pinMode(irMM, INPUT);
-  pinMode(irMR, INPUT);
-  pinMode(irBL, INPUT);
-  pinMode(irBM, INPUT);
-  pinMode(irBR, INPUT);
+  pinMode(irF1pin, INPUT);
+  pinMode(irF2pin, INPUT);
+  pinMode(irMMpin, INPUT);
+  pinMode(irB2pin, INPUT);
+  pinMode(irB1pin, INPUT);
+  pinMode(irL1pin, INPUT);
+  pinMode(irL2pin, INPUT);
+  pinMode(irR2pin, INPUT);
+  pinMode(irR1pin, INPUT);
 }
 
 void loop() {
-  irFL = digitalRead(irFLpin);
-  irFM = digitalRead(irFMpin);
-  irFR = digitalRead(irFRpin);
-  irML = digitalRead(irMLpin);
+  irF1 = digitalRead(irF1pin);
+  irF2 = digitalRead(irF2pin);
   irMM = digitalRead(irMMpin);
-  irMR = digitalRead(irMRpin);
-  irBL = digitalRead(irBLpin);
-  irBM = digitalRead(irBMpin);
-  irBR = digitalRead(irBRpin);
+  irB2 = digitalRead(irB2pin);
+  irB1 = digitalRead(irB1pin);
+  irL1 = digitalRead(irL1pin);
+  irL2 = digitalRead(irL2pin);
+  irR2 = digitalRead(irR2pin);
+  irR1 = digitalRead(irR1pin);
 
-  if(irFL){
+  Serial.print("  ");
+  if(irF1){
     Serial.print(" 1 ");
   }else{
     Serial.print(" 0 ");
   }
-  if(irFM){
-    Serial.print(" 1 ");
-  }else{
-    Serial.print(" 0 ");
-  }
-  if(irFR){
-    Serial.print(" 1 ");
-  }else{
-    Serial.print(" 0 ");
-  }
-  Serial.println("");
+  Serial.println("  ");
   
-  if(irML){
+  Serial.print("  ");
+  if(irF2){
     Serial.print(" 1 ");
   }else{
     Serial.print(" 0 ");
+  }
+  Serial.println("  ");
+ 
+  Serial.print(" ");
+  if(irL1){
+    Serial.print("1");
+  }else{
+    Serial.print("0");
+  }
+  if(irL2){
+    Serial.print("1");
+  }else{
+    Serial.print("0");
   }
   if(irMM){
-    Serial.print(" 1 ");
+    Serial.print("1");
   }else{
-    Serial.print(" 0 ");
+    Serial.print("0");
   }
-  if(irMR){
-    Serial.print(" 1 ");
+  if(irR2){
+    Serial.print("1");
   }else{
-    Serial.print(" 0 ");
+    Serial.print("0");
+  }
+  if(irR1){
+    Serial.print("1");
+  }else{
+    Serial.print("0");
   }
   Serial.println("");
+
+  Serial.print("  ");
+  if(irB2){
+    Serial.print(" 1 ");
+  }else{
+    Serial.print(" 0 ");
+  }
+  Serial.println("  ");
   
-  if(irBL){
+  Serial.print("  ");
+  if(irB1){
     Serial.print(" 1 ");
   }else{
     Serial.print(" 0 ");
   }
-  if(irBM){
-    Serial.print(" 1 ");
-  }else{
-    Serial.print(" 0 ");
-  }
-  if(irBR){
-    Serial.print(" 1 ");
-  }else{
-    Serial.print(" 0 ");
-  }
-  Serial.println("");
+  Serial.println("  ");
+  
 
   Serial.println("");
   delay(500);
