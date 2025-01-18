@@ -1,7 +1,7 @@
-#define m1a A0
-#define m1b A1
-#define m2a A2
-#define m2b A3
+#define m1a A1
+#define m1b A0
+#define m2a A3
+#define m2b A2
 
 #define m1s 9
 #define m2s 11
@@ -26,9 +26,13 @@ bool irL2 = false;
 bool irR2 = false;
 bool irR1 = false;
 
-int speed = 100;
-int slowSpeed = 80;
-int updateTime = 200;
+int speed = 255;
+int slowSpeed = 180;
+int updateTime = 10;
+
+void move(int s=speed, float rotate=0, bool back=false);
+// rotate -100-0 left anf 0-100 right
+void turn(bool right, int s=slowSpeed);
 
 void setup() {
   Serial.begin(9600);
@@ -52,31 +56,76 @@ void setup() {
 void loop() {
   updateIR();
   
-  if(irMM)
-  {
-    if(irF1 && irF2){
-      move(speed);
-    }
-    else if(irF2){
-      move(slowSpeed);
-    }
 
-    if(irL2){
-      move(speed, -20);
-    }else if(irR2){
-      move(speed, 20);
-    }
+
+  if(irF1 && irF2 && irL1 && irL2)
+  {
+    turn(false, speed);
   }
+  else if(irF1 && irF2){
+    move(speed);
+  }
+  else if(irF1){
+    move(slowSpeed);
+  }
+  else if(irF2 || irMM){
+    move(slowSpeed);
+  }
+  else if(irR1)
+  {
+    move(speed, 100);
+    Serial.println("Right");
+  }
+  else if(irL1)
+  {
+    move(speed, -100);
+    Serial.println("Left");
+  }
+  else if(irR2)
+  {
+    move(speed, 100);
+    Serial.println("Right");
+  }
+  else if(irL2)
+  {
+    move(speed, -100);
+    Serial.println("Left");
+  }
+  else if(!irF1 && !irF2 && !irMM && !irB2 && !irB1 && !irL1 && !irL2 && !irR2 && !irR1)
+  {
+    move(speed, 0, true);
+  }else if(irB1 || irB2)
+  {
+    turn(false, speed);
+  }
+
+
+  // move(speed, 0);
+
+  // delay(300);
   
   
   // analogWrite(m1s, 100);
   // analogWrite(m2s, 100); 
 }
 
-void move(int s=speed, int angle=0, bool back=false):
+// void correct(bool right, bool second)
+// {
+
+// }
+
+void move(int s=speed, float rotate=0, bool back=false)
 {
-  analogWrite(m1s, s*(angle+90)/90);
-  analogWrite(m2s, s*(2-(angle+90)/90)); 
+  if(rotate<0)
+  {
+    analogWrite(m1s, s*(1+rotate/100));
+    analogWrite(m2s, s); 
+  }else
+  {
+    analogWrite(m1s, s);
+    analogWrite(m2s, s*(1-rotate/100)); 
+  }
+  
   
   if(!back)
   {
